@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+RET=0
+BP=$("dirname $("dirname $0")")
+if [ -f "$1/package.json" ]; then
+  echo "node.js $("cat $BP/VERSION")"  
+else
+  echo " package.json required"
+  RET=1
+fi
+
+if [ -f "$1/instantclient-basic-linux.x64-19.3.0.0.0dbru.zip" ]; then
+  echo "instantclient-basic-linux.x64-19.3.0.0.0dbru.zip found" 
+else
+  echo "instantclient-basic-linux.x64-19.3.0.0.0dbru.zip required next to package.json"
+  RET=1
+fi 
+
+if [ -f "$1/instantclient-sdk-linux.x64-19.3.0.0.0dbru.zip" ]; then
+  echo "instantclient-sdk-linux.x64-19.3.0.0.0dbru.zip found" 
+else
+  echo "instantclient-sdk-linux.x64-19.3.0.0.0dbru.zip required next to package.json"
+  RET=1
+fi 
+if [ -f "$1/node-v12.13.0-linux-x64.tar.gz" ]; then
+  echo "node-v12.13.0-linux-x64.tar.gz found" 
+else
+  echo "node-v12.13.0-linux-x64.tar.gz required next to package.json"
+  RET=1
+fi 
+exit RET
